@@ -1,0 +1,81 @@
+<div class="slide" id="slide-3">
+    <div class="glass-card main-content">
+        <div
+            class="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-orange-100 to-transparent rounded-full blur-3xl -z-10">
+        </div>
+
+        <!-- Left: Title and Stats -->
+        <div class="flex flex-col justify-center space-y-8 z-10">
+            <div>
+                <h2 class="text-5xl font-black title-font mb-4 animate-text neon-text-shadow">Demoqrafik <br><span
+                        class="text-orange-500">Göstərici</span></h2>
+                <p class="text-lg text-gray-600 animate-text border-l-4 border-orange-500 pl-4">Urbanizasiya və
+                    miqrasiya prosesləri fonunda Suraxanı rayonunun statistik göstəriciləri.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-6 animate-stagger-container">
+                <div class="stat-card-ultra primary animate-stagger group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition"><i
+                            class="ph-duotone ph-identification-card text-8xl text-orange-600"></i></div>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">RƏSMİ QEYDİYYAT</p>
+                    <div class="flex items-baseline">
+                        <h3 class="text-6xl font-black text-gray-800 count-up" data-target="211">0</h3><span
+                            class="text-4xl font-bold text-orange-500 k-suffix">K+</span>
+                    </div>
+
+                </div>
+                <div class="stat-card-ultra secondary animate-stagger group" style="transform: translateY(20px);">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition"><i
+                            class="ph-duotone ph-house-line text-8xl text-yellow-500"></i></div>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">FAKTİKİ YAŞAYAN</p>
+                    <div class="flex items-baseline">
+                        <h3 class="text-6xl font-black text-gray-800 count-up" data-target="308">0</h3><span
+                            class="text-4xl font-bold text-yellow-500 k-suffix">K+</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Circle Diagram -->
+        <div class="flex items-center justify-center z-10 animate-scale">
+            <div class="relative">
+                <div class="relative w-80 h-80">
+                    <svg viewBox="0 0 100 100" class="w-full h-full transform -rotate-90">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#f3f4f6" stroke-width="12" />
+                        <circle class="donut-segment" cx="50" cy="50" r="40" fill="transparent" stroke="#EAB308"
+                            stroke-width="12" stroke-dasharray="0 251" stroke-dashoffset="0" data-dash="128 251">
+                        </circle>
+                        <circle class="donut-segment" cx="50" cy="50" r="40" fill="transparent" stroke="#D1D5DB"
+                            stroke-width="12" stroke-dasharray="0 251" stroke-dashoffset="-128" data-dash="123 251">
+                        </circle>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center flex-col">
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">CİNSİYYƏT</p>
+                        <h3 class="text-6xl font-black text-gray-800 count-up" data-target="308">0</h3>
+                        <span class="text-3xl font-bold text-yellow-500 k-suffix">K+</span>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="flex items-center justify-center gap-8 mt-6">
+                    <div
+                        class="flex items-center gap-3 bg-white/60 px-6 py-3 rounded-full shadow-sm border border-white/50 backdrop-blur-sm">
+                        <span class="w-4 h-4 rounded-full bg-yellow-500"></span>
+                        <div>
+                            <p class="text-xs text-gray-400 font-bold uppercase">Qadın</p>
+                            <p class="text-2xl font-bold text-gray-800">51%</p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center gap-3 bg-white/60 px-6 py-3 rounded-full shadow-sm border border-white/50 backdrop-blur-sm">
+                        <span class="w-4 h-4 rounded-full bg-gray-300"></span>
+                        <div>
+                            <p class="text-xs text-gray-400 font-bold uppercase">Kişi</p>
+                            <p class="text-2xl font-bold text-gray-800">49%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

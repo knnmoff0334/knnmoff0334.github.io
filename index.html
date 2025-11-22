@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qadın Hüquqları və Davamlı İnkişaf - Suraxanı 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Outfit:wght@300;500;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=1.0">
+</head>
+
+<body class="js-loading">
+
+    <!-- Loader -->
+    <div class="loader-container">
+        <span class="loader"></span>
+    </div>
+
+    <!-- Animated Background -->
+    <div id="canvas-container"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div id="app">
+        <!-- Navigation -->
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="prevSlide()"><i class="ph-bold ph-arrow-left"></i></button>
+            <button class="nav-btn" onclick="nextSlide()"><i class="ph-bold ph-arrow-right"></i></button>
+        </div>
+
+        <!-- Slides will be loaded here dynamically -->
+    </div>
+
+    <!-- Main Logic -->
+    <script src="js/script.js?v=1.0"></script>
+    <!-- Slide Loader -->
+    <script src="js/loader.js?v=1.0"></script>
+</body>
+
+</html>
