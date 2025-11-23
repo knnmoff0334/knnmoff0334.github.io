@@ -1,297 +1,57 @@
-<div class="slide" id="slide-8">
-        <div class="glass-card main-content relative overflow-hidden flex flex-col">
-                <!-- Background Elements -->
-                <div
-                        class="absolute -top-20 -right-20 w-[600px] h-[600px] bg-blue-100/20 rounded-full blur-3xl -z-10 animate-pulse">
-                </div>
-                <div class="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-white/90 to-transparent -z-10">
-                </div>
-
-                <!-- Header -->
-                <div class="flex items-center justify-between mb-6 z-10 relative shrink-0">
+<div class="slide" id="slide-9">
+        <div class="glass-card main-content items-center">
+                <div class="flex flex-col justify-center space-y-8 z-10 pl-4">
                         <div>
-                                <h2 class="text-4xl font-black title-font text-gray-800 animate-text">2023-2025 <span
-                                                class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500">Dinamik
-                                                Təhlil</span></h2>
-                                <p class="text-gray-500 mt-1 font-medium animate-text delay-100">3 illik statistik
-                                        göstəricilərin müqayisəsi</p>
+                                <span
+                                        class="bg-blue-100 text-blue-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider animate-text">HÜQUQİ
+                                        MÜDAFİƏ</span>
+                                <h2 class="text-4xl lg:text-5xl font-black title-font mt-4 mb-4 animate-text">Komissiya
+                                        və <br><span class="text-blue-600">Hüquqi Müdafiə</span></h2>
                         </div>
-                        <div class="flex gap-3 bg-white/50 p-2 rounded-xl backdrop-blur-sm border border-white/60">
-                                <div class="flex items-center gap-2 px-3 py-1 rounded-lg bg-gray-100/80">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-gray-400"></span>
-                                        <span class="text-xs font-bold text-gray-600">2023</span>
+                        <div class="grid grid-cols-2 gap-6 animate-stagger-container">
+                                <div class="stat-box border-l-4 border-blue-500 animate-stagger">
+                                        <h3 class="text-4xl font-black text-gray-800 count-up" data-target="211">0</h3>
+                                        <p class="text-sm text-gray-500 font-bold mt-1">Müzakirə edilən məsələ</p>
                                 </div>
-                                <div class="flex items-center gap-2 px-3 py-1 rounded-lg bg-blue-50">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
-                                        <span class="text-xs font-bold text-blue-600">2024</span>
+                                <div class="stat-box border-l-4 border-purple-500 animate-stagger">
+                                        <h3 class="text-4xl font-black text-gray-800 count-up" data-target="14">0</h3>
+                                        <p class="text-sm text-gray-500 font-bold mt-1">Keçirilən iclas</p>
                                 </div>
-                                <div class="flex items-center gap-2 px-3 py-1 rounded-lg bg-orange-50">
-                                        <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
-                                        <span class="text-xs font-bold text-orange-600">2025</span>
+                        </div>
+                        <div
+                                class="bg-white/70 rounded-2xl p-6 border border-white shadow-sm animate-stagger flex items-center gap-4">
+                                <div
+                                        class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-2xl">
+                                        <i class="ph-fill ph-gavel"></i>
+                                </div>
+                                <div>
+                                        <h3 class="text-3xl font-black text-gray-800 count-up" data-target="291">0</h3>
+                                        <p class="text-sm text-gray-600 font-medium">Uşağın hüquqları məhkəmə və digər
+                                                orqanlarda müdafiə
+                                                edilmişdir.</p>
                                 </div>
                         </div>
                 </div>
-
-                <!-- Main Content Grid -->
-                <div class="grid grid-cols-12 gap-6 h-full overflow-hidden pb-2">
-
-                        <!-- Left Column: Major Trends (7 cols) -->
-                        <div class="col-span-7 flex flex-col gap-5">
-
-                                <!-- Sənəd Dövriyyəsi Chart -->
+                <div class="relative h-full w-full p-8 animate-scale flex flex-col justify-center items-center gap-6">
+                        <div class="flex flex-col gap-5 h-[80%] w-[85%]">
                                 <div
-                                        class="bg-white/60 backdrop-blur-sm p-5 rounded-2xl border border-white/50 shadow-sm hover:shadow-md transition-all animate-stagger group flex-1 flex flex-col">
-                                        <div class="flex justify-between items-center mb-6">
-                                                <div class="flex items-center gap-3">
-                                                        <div
-                                                                class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-sm">
-                                                                <i class="ph-duotone ph-files text-xl"></i>
-                                                        </div>
-                                                        <div>
-                                                                <h4 class="font-bold text-gray-800 text-sm">Sənəd
-                                                                        Dövriyyəsi</h4>
-                                                                <p
-                                                                        class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">
-                                                                        İllik Dinamika</p>
-                                                        </div>
-                                                </div>
-                                                <div class="text-right">
-                                                        <p class="text-xs text-gray-400 font-medium">Ümumi Həcm</p>
-                                                        <p class="text-lg font-black text-gray-800">2,805</p>
-                                                </div>
-                                        </div>
-
-                                        <div class="flex-1 flex items-end justify-around gap-6 px-4 pb-2">
-                                                <!-- 2023 -->
-                                                <div
-                                                        class="flex flex-col items-center gap-2 w-full group/bar cursor-pointer">
-                                                        <div
-                                                                class="text-xs font-bold text-gray-400 mb-1 transition-all group-hover/bar:scale-110 group-hover/bar:text-gray-600">
-                                                                963</div>
-                                                        <div
-                                                                class="w-full bg-gray-100/50 rounded-t-lg relative h-32 flex items-end">
-                                                                <div class="w-full bg-gray-400 rounded-t-lg chart-bar-fill transition-all duration-1000 group-hover/bar:bg-gray-500 relative"
-                                                                        style="height: 0%" data-height="100%">
-                                                                        <div
-                                                                                class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent">
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                        <span class="text-xs font-bold text-gray-400 mt-1">2023</span>
-                                                </div>
-                                                <!-- 2024 -->
-                                                <div
-                                                        class="flex flex-col items-center gap-2 w-full group/bar cursor-pointer">
-                                                        <div
-                                                                class="text-xs font-bold text-blue-500 mb-1 transition-all group-hover/bar:scale-110 group-hover/bar:text-blue-600">
-                                                                946</div>
-                                                        <div
-                                                                class="w-full bg-blue-50/50 rounded-t-lg relative h-32 flex items-end">
-                                                                <div class="w-full bg-blue-500 rounded-t-lg chart-bar-fill transition-all duration-1000 group-hover/bar:bg-blue-600 relative"
-                                                                        style="height: 0%" data-height="98%">
-                                                                        <div
-                                                                                class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent">
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                        <span class="text-xs font-bold text-blue-500 mt-1">2024</span>
-                                                </div>
-                                                <!-- 2025 -->
-                                                <div
-                                                        class="flex flex-col items-center gap-2 w-full group/bar cursor-pointer">
-                                                        <div
-                                                                class="text-xs font-bold text-orange-500 mb-1 transition-all group-hover/bar:scale-110 group-hover/bar:text-orange-600">
-                                                                896</div>
-                                                        <div
-                                                                class="w-full bg-orange-50/50 rounded-t-lg relative h-32 flex items-end">
-                                                                <div class="w-full bg-orange-500 rounded-t-lg chart-bar-fill transition-all duration-1000 group-hover/bar:bg-orange-600 relative shadow-[0_0_15px_rgba(249,115,22,0.3)]"
-                                                                        style="height: 0%" data-height="93%">
-                                                                        <div
-                                                                                class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent">
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                        <span class="text-xs font-bold text-orange-500 mt-1">2025</span>
-                                                </div>
-                                        </div>
-                                </div>
-
-                                <!-- Vətəndaş Müraciəti Chart -->
-                                <div
-                                        class="bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white/50 shadow-sm hover:shadow-md transition-all animate-stagger group flex-1 flex flex-col justify-center">
-                                        <div class="flex justify-between items-center mb-3">
-                                                <div class="flex items-center gap-3">
-                                                        <div
-                                                                class="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 shadow-sm">
-                                                                <i class="ph-duotone ph-users-three text-xl"></i>
-                                                        </div>
-                                                        <div>
-                                                                <h4 class="font-bold text-gray-800 text-sm">Vətəndaş
-                                                                        Müraciəti</h4>
-                                                                <p
-                                                                        class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">
-                                                                        Qəbul Statistikası</p>
-                                                        </div>
-                                                </div>
-                                        </div>
-
-                                        <div class="space-y-3">
-                                                <!-- 2023 -->
-                                                <div class="flex items-center gap-3">
-                                                        <span class="text-xs font-bold text-gray-400 w-8">2023</span>
-                                                        <div
-                                                                class="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                                                                <div class="h-full bg-gray-400 rounded-full chart-bar-fill"
-                                                                        style="width: 0%" data-width="91%"></div>
-                                                        </div>
-                                                        <span
-                                                                class="text-xs font-black text-gray-600 w-8 text-right">262</span>
-                                                </div>
-                                                <!-- 2024 -->
-                                                <div class="flex items-center gap-3">
-                                                        <span class="text-xs font-bold text-blue-500 w-8">2024</span>
-                                                        <div
-                                                                class="flex-1 h-2.5 bg-blue-50 rounded-full overflow-hidden">
-                                                                <div class="h-full bg-blue-500 rounded-full chart-bar-fill"
-                                                                        style="width: 0%" data-width="100%"></div>
-                                                        </div>
-                                                        <span
-                                                                class="text-xs font-black text-blue-600 w-8 text-right">287</span>
-                                                </div>
-                                                <!-- 2025 -->
-                                                <div class="flex items-center gap-3">
-                                                        <span class="text-xs font-bold text-orange-500 w-8">2025</span>
-                                                        <div
-                                                                class="flex-1 h-2.5 bg-orange-50 rounded-full overflow-hidden">
-                                                                <div class="h-full bg-orange-500 rounded-full chart-bar-fill"
-                                                                        style="width: 0%" data-width="72%"></div>
-                                                        </div>
-                                                        <span
-                                                                class="text-xs font-black text-orange-600 w-8 text-right">207</span>
-                                                </div>
-                                        </div>
-                                </div>
-
-                        </div>
-
-                        <!-- Right Column: Critical Metrics & Breakdown (5 cols) -->
-                        <div class="col-span-5 flex flex-col gap-5">
-
-                                <!-- Domestic Violence Trend -->
-                                <div
-                                        class="bg-gradient-to-br from-red-50 to-white p-5 rounded-2xl border border-red-100 shadow-sm animate-stagger relative overflow-hidden group">
+                                        class="relative flex-1 rounded-2xl overflow-hidden shadow-lg group animate-stagger border border-white/20">
+                                        <img src="/images/slide9/1.jpg" alt="Komissiya İclası"
+                                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                                         <div
-                                                class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition">
-                                                <i class="ph-duotone ph-warning-octagon text-9xl text-red-600"></i>
-                                        </div>
-
-                                        <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2 relative z-10">
-                                                <div class="p-1.5 bg-red-100 rounded-lg text-red-600"><i
-                                                                class="ph-bold ph-trend-down"></i></div>
-                                                Məişət Zorakılığı
-                                        </h4>
-
-                                        <div class="flex justify-between items-end relative z-10 px-2">
-                                                <!-- 2023 -->
-                                                <div class="text-center">
-                                                        <div
-                                                                class="w-10 h-10 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center text-gray-400 font-black text-base mb-2 shadow-sm">
-                                                                31</div>
-                                                        <div class="h-12 w-0.5 bg-gray-200 mx-auto"></div>
-                                                        <p class="text-[10px] font-bold text-gray-400 mt-2">2023</p>
-                                                </div>
-                                                <!-- 2024 -->
-                                                <div class="text-center">
-                                                        <div
-                                                                class="w-12 h-12 rounded-full bg-white border-2 border-red-200 flex items-center justify-center text-red-400 font-black text-lg mb-2 shadow-sm">
-                                                                34</div>
-                                                        <div class="h-16 w-0.5 bg-red-200 mx-auto"></div>
-                                                        <p class="text-[10px] font-bold text-red-400 mt-2">2024</p>
-                                                </div>
-                                                <!-- 2025 -->
-                                                <div class="text-center">
-                                                        <div
-                                                                class="w-14 h-14 rounded-full bg-red-500 border-4 border-white flex items-center justify-center text-white font-black text-xl mb-2 shadow-lg shadow-red-200 scale-110">
-                                                                <span class="count-up" data-target="28">0</span>
-                                                        </div>
-                                                        <div class="h-20 w-0.5 bg-red-500 mx-auto"></div>
-                                                        <p class="text-[10px] font-bold text-red-600 mt-2">2025</p>
-                                                </div>
+                                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                                                <span class="text-white font-bold tracking-wide">Komissiya İclası</span>
                                         </div>
                                 </div>
-
-                                <!-- 2025 Top Categories Mini-Grid -->
                                 <div
-                                        class="bg-white/60 backdrop-blur-sm p-4 rounded-2xl border border-white/50 shadow-sm animate-stagger flex-1 flex flex-col justify-center">
-                                        <h4 class="font-bold text-gray-800 text-sm mb-3 flex items-center gap-2">
-                                                <i class="ph-fill ph-chart-pie-slice text-orange-500"></i>
-                                                2025-ci il Dominant Kateqoriyalar
-                                        </h4>
-                                        <div class="space-y-2">
-                                                <!-- Item 1 -->
-                                                <div
-                                                        class="flex items-center justify-between p-1.5 hover:bg-white rounded-lg transition-colors cursor-default group/item">
-                                                        <div class="flex items-center gap-3">
-                                                                <div
-                                                                        class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-base">
-                                                                        <i class="ph-duotone ph-gavel"></i>
-                                                                </div>
-                                                                <div>
-                                                                        <p class="text-[10px] font-bold text-gray-700">
-                                                                                Məhkəmə bildirişi</p>
-                                                                        <div
-                                                                                class="w-20 h-1 bg-gray-100 rounded-full mt-0.5 overflow-hidden">
-                                                                                <div
-                                                                                        class="h-full bg-purple-500 w-[60%]">
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                        <span class="font-black text-sm text-gray-800">191</span>
-                                                </div>
-                                                <!-- Item 2 -->
-                                                <div
-                                                        class="flex items-center justify-between p-1.5 hover:bg-white rounded-lg transition-colors cursor-default group/item">
-                                                        <div class="flex items-center gap-3">
-                                                                <div
-                                                                        class="w-7 h-7 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-base">
-                                                                        <i class="ph-duotone ph-hand-heart"></i>
-                                                                </div>
-                                                                <div>
-                                                                        <p class="text-[10px] font-bold text-gray-700">
-                                                                                Qəyyum/Patronaj</p>
-                                                                        <div
-                                                                                class="w-20 h-1 bg-gray-100 rounded-full mt-0.5 overflow-hidden">
-                                                                                <div class="h-full bg-teal-500 w-[45%]">
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                        <span class="font-black text-sm text-gray-800">148</span>
-                                                </div>
-                                                <!-- Item 3 -->
-                                                <div
-                                                        class="flex items-center justify-between p-1.5 hover:bg-white rounded-lg transition-colors cursor-default group/item">
-                                                        <div class="flex items-center gap-3">
-                                                                <div
-                                                                        class="w-7 h-7 rounded-lg bg-gray-100 text-gray-600 flex items-center justify-center text-base">
-                                                                        <i class="ph-duotone ph-file-text"></i>
-                                                                </div>
-                                                                <div>
-                                                                        <p class="text-[10px] font-bold text-gray-700">
-                                                                                Qərardadlar</p>
-                                                                        <div
-                                                                                class="w-20 h-1 bg-gray-100 rounded-full mt-0.5 overflow-hidden">
-                                                                                <div class="h-full bg-gray-500 w-[40%]">
-                                                                                </div>
-                                                                        </div>
-                                                                </div>
-                                                        </div>
-                                                        <span class="font-black text-sm text-gray-800">124</span>
-                                                </div>
+                                        class="relative flex-1 rounded-2xl overflow-hidden shadow-lg group animate-stagger border border-white/20">
+                                        <img src="/images/slide9/2.jpg" alt="Hüquqi Yardım"
+                                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                        <div
+                                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                                                <span class="text-white font-bold tracking-wide">Hüquqi Yardım</span>
                                         </div>
                                 </div>
-
                         </div>
                 </div>
         </div>

@@ -1,6 +1,6 @@
 async function loadSlides() {
     const app = document.getElementById('app');
-    const totalSlides = 30;
+    const totalSlides = 29;
 
     // 1. Load the first slide immediately
     try {
@@ -36,7 +36,7 @@ async function loadSlides() {
                             gsap.set(firstSlide, { visibility: 'visible', opacity: 1 });
                             firstSlide.classList.add('active-slide');
                             triggerSlideAnimations(firstSlide);
-                updateNavigationButtons(); // Hide prev button on first slide
+                            updateNavigationButtons(); // Hide prev button on first slide
                         } else {
                             // Fallback if GSAP is missing
                             firstSlide.style.visibility = 'visible';
