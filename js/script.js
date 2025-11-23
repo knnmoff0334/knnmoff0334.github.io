@@ -89,6 +89,11 @@ function showSlide(index, direction = 1) {
 
     const outgoingSlide = document.querySelector('.active-slide');
 
+    // Cleanup videos in outgoing slide
+    if (outgoingSlide) {
+        cleanupVideos(outgoingSlide);
+    }
+
     // Load incoming slide if not present
     const incomingSlideId = `slide-${index}`;
     let incomingSlide = document.getElementById(incomingSlideId);
@@ -160,8 +165,91 @@ function prevSlide() {
     }
 }
 
+// Cleanup Videos - Stop and reset videos when leaving a slide
+function cleanupVideos(slideContext) {
+    if (!slideContext) return;
+
+    const videos = slideContext.querySelectorAll('video');
+
+    videos.forEach(video => {
+        // Pause the video
+        video.pause();
+
+        // Reset to beginning
+        video.currentTime = 0;
+
+        // Reload video to show poster
+        video.load();
+
+        // Remove controls
+        video.removeAttribute('controls');
+
+        // Remove any existing play overlays
+        const container = video.closest('.relative');
+        if (container) {
+            const existingOverlay = container.querySelector('.video-play-overlay');
+            if (existingOverlay) {
+                existingOverlay.remove();
+            }
+        }
+    });
+}
+
+// Initialize Videos - Hide controls and add custom play button
+function initializeVideos(slideContext) {
+    const videos = slideContext.querySelectorAll('video');
+
+    videos.forEach(video => {
+        // Reset video state
+        video.pause();
+        video.currentTime = 0;
+        video.load(); // Reload video to show poster
+        video.removeAttribute('controls');
+
+        // Find the video container
+        const container = video.closest('.relative');
+        if (!container) return;
+
+        // Remove any existing overlay first
+        const existingOverlay = container.querySelector('.video-play-overlay');
+        if (existingOverlay) {
+            existingOverlay.remove();
+        }
+
+        // Create custom play button overlay (large centered button)
+        const playOverlay = document.createElement('div');
+        playOverlay.className = 'video-play-overlay absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer transition-opacity duration-300 hover:bg-black/30';
+        playOverlay.innerHTML = `
+            <div class="w-20 h-20 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-2xl transform transition-transform hover:scale-110">
+                <i class="ph-fill ph-play text-4xl text-gray-900 ml-1"></i>
+            </div>
+        `;
+
+        // Add overlay to container
+        container.appendChild(playOverlay);
+
+        // Click handler for play overlay
+        playOverlay.addEventListener('click', () => {
+            // Show native controls
+            video.setAttribute('controls', 'controls');
+
+            // Play video
+            video.play();
+
+            // Remove overlay with fade out
+            playOverlay.style.opacity = '0';
+            setTimeout(() => {
+                playOverlay.remove();
+            }, 300);
+        });
+    });
+}
+
 // Element Animations per slide
 function triggerSlideAnimations(slideContext) {
+    // Initialize videos first
+    initializeVideos(slideContext);
+
     // Text Fade Up
     const texts = slideContext.querySelectorAll('.animate-text');
     if (texts.length) {
