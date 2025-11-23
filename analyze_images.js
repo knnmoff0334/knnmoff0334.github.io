@@ -22,7 +22,7 @@ function getDimensions(filePath) {
     return null;
 }
 
-const dirs = ['slide17'];
+const dirs = ['slide16'];
 const baseDir = 'c:\\Users\\orkha\\Desktop\\test\\images';
 
 dirs.forEach(dir => {
