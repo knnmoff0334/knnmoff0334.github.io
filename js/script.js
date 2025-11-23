@@ -1,6 +1,6 @@
 // State
 let currentSlide = 0;
-const totalSlides = 31; // Updated to 31 slides
+const totalSlides = 30; // Correct: slides 0-29
 let isAnimating = false;
 
 // Initialize GSAP
