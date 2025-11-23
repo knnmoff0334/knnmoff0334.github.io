@@ -419,3 +419,214 @@ document.addEventListener('click', (e) => {
         duration: 0.5
     });
 });
+
+// ============================================
+// DEBUG MODE - Ctrl+Shift+Y
+// ============================================
+
+let debugModeActive = false;
+let debugPanel = null;
+
+// Create Debug Panel
+function createDebugPanel() {
+    const panel = document.createElement('div');
+    panel.id = 'debug-panel';
+    panel.className = 'fixed top-4 right-4 w-80 bg-gray-900/95 backdrop-blur-md text-white rounded-2xl shadow-2xl border border-gray-700 z-[9999] overflow-hidden';
+    panel.style.display = 'none';
+
+    panel.innerHTML = `
+        <div class="p-4 bg-gradient-to-r from-indigo-600 to-purple-600 border-b border-gray-700">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+                    <h3 class="font-black text-sm uppercase tracking-wider">Debug Mode</h3>
+                </div>
+                <span class="text-xs font-mono bg-white/20 px-2 py-1 rounded">Ctrl+Shift+Y</span>
+            </div>
+        </div>
+        
+        <div class="p-4 space-y-4">
+            <!-- Current Slide Info -->
+            <div class="bg-gray-800 rounded-lg p-3 border border-gray-700">
+                <div class="text-xs text-gray-400 mb-1">Current Slide</div>
+                <div class="text-2xl font-black" id="debug-current-slide">0</div>
+                <div class="text-xs text-gray-500 mt-1">Total: ${totalSlides} slides (0-${totalSlides - 1})</div>
+            </div>
+            
+            <!-- Quick Jump Input -->
+            <div>
+                <label class="text-xs text-gray-400 mb-2 block font-bold">Jump to Slide</label>
+                <div class="flex gap-2">
+                    <input 
+                        type="number" 
+                        id="debug-slide-input" 
+                        min="0" 
+                        max="${totalSlides - 1}" 
+                        placeholder="0-${totalSlides - 1}"
+                        class="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    >
+                    <button 
+                        id="debug-jump-btn"
+                        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-sm font-bold transition-colors"
+                    >
+                        Go
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Quick Navigation Buttons -->
+            <div class="grid grid-cols-2 gap-2">
+                <button id="debug-first-btn" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-xs font-bold border border-gray-700 transition-colors">
+                    ⏮ First
+                </button>
+                <button id="debug-last-btn" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-xs font-bold border border-gray-700 transition-colors">
+                    Last ⏭
+                </button>
+            </div>
+            
+            <!-- Slide Grid -->
+            <div>
+                <div class="text-xs text-gray-400 mb-2 font-bold">All Slides</div>
+                <div class="grid grid-cols-5 gap-1 max-h-48 overflow-y-auto custom-scrollbar" id="debug-slide-grid">
+                    <!-- Slides will be generated here -->
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(panel);
+    return panel;
+}
+
+// Update Debug Panel Info
+function updateDebugPanel() {
+    if (!debugPanel) return;
+
+    const currentSlideEl = document.getElementById('debug-current-slide');
+    if (currentSlideEl) {
+        currentSlideEl.textContent = currentSlide;
+    }
+
+    // Update grid active state
+    const gridButtons = debugPanel.querySelectorAll('.debug-slide-btn');
+    gridButtons.forEach((btn, index) => {
+        if (index === currentSlide) {
+            btn.classList.add('bg-indigo-600', 'ring-2', 'ring-indigo-400');
+            btn.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+        } else {
+            btn.classList.remove('bg-indigo-600', 'ring-2', 'ring-indigo-400');
+            btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+        }
+    });
+}
+
+// Generate Slide Grid
+function generateSlideGrid() {
+    const grid = document.getElementById('debug-slide-grid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'debug-slide-btn px-2 py-1.5 bg-gray-700 hover:bg-gray-600 rounded text-xs font-bold transition-colors';
+        btn.textContent = i;
+        btn.addEventListener('click', () => {
+            currentSlide = i;
+            showSlide(i, i > currentSlide ? 1 : -1);
+            updateDebugPanel();
+        });
+        grid.appendChild(btn);
+    }
+    updateDebugPanel();
+}
+
+// Toggle Debug Mode
+function toggleDebugMode() {
+    debugModeActive = !debugModeActive;
+
+    if (!debugPanel) {
+        debugPanel = createDebugPanel();
+        generateSlideGrid();
+
+        // Add event listeners
+        const jumpBtn = document.getElementById('debug-jump-btn');
+        const slideInput = document.getElementById('debug-slide-input');
+        const firstBtn = document.getElementById('debug-first-btn');
+        const lastBtn = document.getElementById('debug-last-btn');
+
+        jumpBtn.addEventListener('click', () => {
+            const targetSlide = parseInt(slideInput.value);
+            if (targetSlide >= 0 && targetSlide < totalSlides) {
+                currentSlide = targetSlide;
+                showSlide(targetSlide, targetSlide > currentSlide ? 1 : -1);
+                updateDebugPanel();
+                slideInput.value = '';
+            }
+        });
+
+        slideInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                jumpBtn.click();
+            }
+        });
+
+        firstBtn.addEventListener('click', () => {
+            currentSlide = 0;
+            showSlide(0, -1);
+            updateDebugPanel();
+        });
+
+        lastBtn.addEventListener('click', () => {
+            currentSlide = totalSlides - 1;
+            showSlide(totalSlides - 1, 1);
+            updateDebugPanel();
+        });
+    }
+
+    if (debugModeActive) {
+        debugPanel.style.display = 'block';
+        updateDebugPanel();
+        gsap.fromTo(debugPanel,
+            { x: 400, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.3, ease: 'power2.out' }
+        );
+    } else {
+        gsap.to(debugPanel, {
+            x: 400,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in',
+            onComplete: () => {
+                debugPanel.style.display = 'none';
+            }
+        });
+    }
+}
+
+// Keyboard Shortcut: Ctrl+Shift+Y
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'Y') {
+        e.preventDefault();
+        toggleDebugMode();
+    }
+});
+
+// Add custom scrollbar styles
+const style = document.createElement('style');
+style.textContent = `
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1f2937;
+        border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #4b5563;
+        border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #6b7280;
+    }
+`;
+document.head.appendChild(style);
