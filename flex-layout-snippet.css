@@ -1,0 +1,7 @@
+/* Flex layout variant for slides that need flex instead of grid */
+.main-content.flex-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
