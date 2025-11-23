@@ -236,8 +236,38 @@ function triggerSlideAnimations(slideContext) {
 
 // Keyboard Nav
 document.addEventListener('keydown', (e) => {
+    // Navigation
     if (e.key === 'ArrowRight') nextSlide();
     if (e.key === 'ArrowLeft') prevSlide();
+
+    // Video Controls
+    const activeSlide = document.querySelector('.active-slide');
+    if (!activeSlide) return;
+
+    const video = activeSlide.querySelector('video');
+    if (!video) return;
+
+    // P key: Play/Pause
+    if (e.key === 'p' || e.key === 'P') {
+        e.preventDefault();
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    }
+
+    // F key: Fullscreen toggle
+    if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        if (!document.fullscreenElement) {
+            video.requestFullscreen().catch(err => {
+                console.log('Fullscreen error:', err);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
 });
 
 // Slide 5 Interaction Logic (Event Delegation)
