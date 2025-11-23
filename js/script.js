@@ -6,6 +6,20 @@ let isAnimating = false;
 // Initialize GSAP
 gsap.registerPlugin();
 
+// Update navigation button visibility based on current slide
+function updateNavigationButtons() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (prevBtn) {
+        prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
+    }
+
+    if (nextBtn) {
+        nextBtn.style.display = currentSlide === totalSlides - 1 ? 'none' : 'flex';
+    }
+}
+
 // Tilt Effect Logic
 // Tilt Effect Logic
 document.addEventListener('mousemove', (e) => {
@@ -99,6 +113,7 @@ function showSlide(index, direction = 1) {
             incomingSlide.classList.add('active-slide');
             isAnimating = false;
             triggerSlideAnimations(incomingSlide);
+            updateNavigationButtons(); // Update button visibility
         }
     });
 

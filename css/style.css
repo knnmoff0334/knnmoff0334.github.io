@@ -145,8 +145,8 @@ h3,
 }
 
 .main-content {
-    width: 90%;
-    height: 85%;
+    width: 95%;
+    height: 92%;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;

@@ -36,6 +36,7 @@ async function loadSlides() {
                             gsap.set(firstSlide, { visibility: 'visible', opacity: 1 });
                             firstSlide.classList.add('active-slide');
                             triggerSlideAnimations(firstSlide);
+                updateNavigationButtons(); // Hide prev button on first slide
                         } else {
                             // Fallback if GSAP is missing
                             firstSlide.style.visibility = 'visible';
