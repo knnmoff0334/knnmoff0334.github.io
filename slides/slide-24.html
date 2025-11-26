@@ -3,151 +3,86 @@
 
         <!-- Background Ambience -->
         <div
-            class="absolute top-0 left-0 w-[800px] h-[800px] bg-teal-500/10 rounded-full blur-[120px] -z-10 animate-pulse">
+            class="absolute top-0 left-0 w-[800px] h-[800px] bg-indigo-500/10 rounded-full blur-[120px] -z-10 animate-pulse">
         </div>
-        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[100px] -z-10 animate-pulse"
+        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] -z-10 animate-pulse"
             style="animation-delay: 2s;"></div>
 
-        <!-- Main Container -->
-        <div class="w-full h-full flex flex-col p-6">
+        <!-- Main Grid Container -->
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
-            <!-- Header Section -->
-            <div class="flex flex-col items-center text-center mb-8 shrink-0 z-10">
-                <div
-                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 w-fit mb-3 animate-text">
-                    <div class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></div>
-                    <span class="text-[10px] font-black tracking-[0.2em] uppercase">Strateji Təhlil</span>
+            <!-- LEFT COLUMN: Context & Details (5 Columns) -->
+            <div class="lg:col-span-5 flex flex-col justify-center space-y-6">
+
+                <!-- Header Section -->
+                <div class="space-y-3">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 w-fit animate-text">
+                        <div class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></div>
+                        <span class="text-[10px] font-black tracking-[0.2em] uppercase">Rəy Sorğusu</span>
+                    </div>
+
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 leading-[1.1] animate-text">
+                        Məişət Zorakılığına <br>
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-600">Münasibət</span>
+                    </h2>
                 </div>
-                <h2 class="text-4xl lg:text-5xl font-black text-gray-900 leading-tight animate-text mb-4">
-                    SWOT <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Analizi</span>
-                </h2>
-                <p class="text-sm text-gray-600 max-w-3xl animate-text leading-relaxed">
-                    Hər hansı bir layihəni, təşkilatı və ya vəziyyəti qiymətləndirmək üçün istifadə olunan sadə, amma
-                    çox effektiv strateji təhlil metodudur.
+
+                <!-- Survey Info Card -->
+                <div
+                    class="bg-white/60 backdrop-blur-md border-l-4 border-indigo-500 p-4 rounded-r-xl shadow-sm animate-text">
+                    <h3 class="text-lg font-bold text-gray-900">Suraxanı Rayonu</h3>
+                    <div class="flex items-center gap-2 mt-1 text-gray-500">
+                        <i class="ph-duotone ph-users-three text-lg"></i>
+                        <span class="text-xs font-medium">Respondent sayı: 100 nəfər</span>
+                    </div>
+                </div>
+
+                <!-- Context Text -->
+                <p class="text-base text-gray-600 leading-relaxed animate-text">
+                    Bununla yanaşı Məişət zorakılığına münasibətin öyrənilməsi məqsədilə Suraxanı rayonunda 100 nəfər
+                    sakin arasında sorğu keçirilmişdir. Həmin sorğunu sizə təqdim edirik.
                 </p>
+
+                <!-- Action Tags -->
+                <div class="flex flex-wrap gap-3 animate-text">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <div class="p-1.5 bg-indigo-50 text-indigo-600 rounded-lg">
+                            <i class="ph-duotone ph-users-three text-lg"></i>
+                        </div>
+                        <span class="font-bold text-gray-700 text-xs uppercase tracking-wide">100 Respondent</span>
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <div class="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
+                            <i class="ph-duotone ph-video-camera text-lg"></i>
+                        </div>
+                        <span class="font-bold text-gray-700 text-xs uppercase tracking-wide">Video Süjet</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- SWOT Matrix Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full min-h-0 flex-1">
+            <!-- RIGHT COLUMN: Video Only (7 Columns) -->
+            <div class="lg:col-span-7 flex flex-col justify-center items-center animate-scale">
 
-                <!-- Strengths (S) -->
+                <!-- Video Player Container -->
                 <div
-                    class="group relative bg-white/60 backdrop-blur-md border border-teal-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-teal-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                S
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Strengths</h3>
-                                <p class="text-xs font-bold text-teal-600 uppercase tracking-wider">Güclü Tərəflər</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            Sizi və ya qurumu üstün edən, rəqabət avantajı yaradan cəhətlər.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-teal-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-check-circle text-teal-500"></i>
-                                <span>Məs.: Təcrübəli komanda, yüksək keyfiyyətli məhsul.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    class="w-full aspect-video bg-gray-900 rounded-xl overflow-hidden shadow-xl border-4 border-white relative group ring-1 ring-gray-200">
+                    <video class="w-full h-full object-cover" poster="/images/slide23/1.png">
+                        <source src="/videos/3.mp4" type="video/mp4">
+                        Sizin brauzeriniz video teqini dəstəkləmir.
+                    </video>
 
-                <!-- Weaknesses (W) -->
-                <div class="group relative bg-white/60 backdrop-blur-md border border-orange-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-orange-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger"
-                    style="animation-delay: 100ms;">
+                    <!-- "Süjet" Badge -->
                     <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                W
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Weaknesses</h3>
-                                <p class="text-xs font-bold text-orange-600 uppercase tracking-wider">Zəif Tərəflər</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            İnkişaf etdirilməli və ya çatışmazlıq yaradan sahələr.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-orange-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-warning-circle text-orange-500"></i>
-                                <span>Məs.: Məhdud büdcə, az tanınma.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Opportunities (O) -->
-                <div class="group relative bg-white/60 backdrop-blur-md border border-blue-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger"
-                    style="animation-delay: 200ms;">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                O
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Opportunities</h3>
-                                <p class="text-xs font-bold text-blue-600 uppercase tracking-wider">İmkanlar</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            Xarici mühitdə mövcud olan, istifadə edilsə, inkişaf gətirəcək fürsətlər.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-blue-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-trend-up text-blue-500"></i>
-                                <span>Məs.: Artan bazar tələbi, yeni texnologiyalar.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Threats (T) -->
-                <div class="group relative bg-white/60 backdrop-blur-md border border-purple-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-purple-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger"
-                    style="animation-delay: 300ms;">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                T
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Threats</h3>
-                                <p class="text-xs font-bold text-purple-600 uppercase tracking-wider">Təhdidlər</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            Fəaliyyətə mənfi təsir göstərə biləcək risklər və xarici maneələr.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-purple-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-shield-warning text-purple-500"></i>
-                                <span>Məs.: Güclü rəqiblər, iqtisadi böhranlar.</span>
-                            </div>
-                        </div>
+                        class="absolute top-4 right-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-full flex items-center gap-2 border border-white/10">
+                        <div class="w-1.5 h-1.5 bg-indigo-500 rounded-full animate-pulse"></div>
+                        <span class="text-[10px] font-bold text-white uppercase tracking-wider">Video Süjet</span>
                     </div>
                 </div>
 
             </div>
+
         </div>
     </div>
 </div>
