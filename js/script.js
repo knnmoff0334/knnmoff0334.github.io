@@ -630,3 +630,233 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ============================================
+// CUSTOM CONTEXT MENU - Right Click
+// ============================================
+
+let contextMenu = null;
+
+// Create Custom Context Menu
+function createContextMenu() {
+    const menu = document.createElement('div');
+    menu.id = 'custom-context-menu';
+    menu.className = 'fixed bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200 z-[10000] overflow-hidden';
+    menu.style.display = 'none';
+    menu.style.minWidth = '240px';
+
+    menu.innerHTML = `
+        <div class="p-2 bg-gradient-to-r from-indigo-500 to-purple-600 border-b border-gray-200">
+            <div class="flex items-center gap-2 px-2 py-1">
+                <i class="ph-fill ph-presentation text-white text-lg"></i>
+                <span class="text-white font-black text-xs uppercase tracking-wider">Sunum Menüsü</span>
+            </div>
+        </div>
+        
+        <div class="p-2 space-y-1">
+            <!-- Current Slide Info -->
+            <div class="px-3 py-2 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border border-indigo-100">
+                <div class="text-xs text-gray-500 font-bold">Cari Slayd</div>
+                <div class="text-lg font-black text-gray-900" id="context-current-slide">0</div>
+                <div class="text-xs text-gray-500">/ ${totalSlides - 1}</div>
+            </div>
+            
+            <!-- Navigation Section -->
+            <div class="pt-2 pb-1">
+                <div class="px-2 text-xs font-black text-gray-400 uppercase tracking-wider mb-1">Naviqasiya</div>
+                
+                <button class="context-menu-item w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-indigo-50 transition-colors text-left group" data-action="first">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                        <i class="ph-fill ph-skip-back text-indigo-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-bold text-gray-800">İlk Slayd</div>
+                        <div class="text-xs text-gray-500">Başa dön</div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">Home</span>
+                </button>
+                
+                <button class="context-menu-item w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-purple-50 transition-colors text-left group" data-action="last">
+                    <div class="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                        <i class="ph-fill ph-skip-forward text-purple-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-bold text-gray-800">Son Slayd</div>
+                        <div class="text-xs text-gray-500">Sona get</div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">End</span>
+                </button>
+            </div>
+            
+            <div class="h-px bg-gray-200 my-2"></div>
+            
+            <!-- Tools Section -->
+            <div class="pb-1">
+                <div class="px-2 text-xs font-black text-gray-400 uppercase tracking-wider mb-1">Alətlər</div>
+                
+                <button class="context-menu-item w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-green-50 transition-colors text-left group" data-action="debug">
+                    <div class="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                        <i class="ph-fill ph-bug text-green-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-bold text-gray-800">Debug Mode</div>
+                        <div class="text-xs text-gray-500">Panel aç/bağla</div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">Ctrl+Shift+Y</span>
+                </button>
+                
+                <button class="context-menu-item w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 transition-colors text-left group" data-action="fullscreen">
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                        <i class="ph-fill ph-arrows-out text-blue-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-bold text-gray-800">Tam Ekran</div>
+                        <div class="text-xs text-gray-500">Fullscreen aç</div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">F11</span>
+                </button>
+                
+                <button class="context-menu-item w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-orange-50 transition-colors text-left group" data-action="reload">
+                    <div class="w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                        <i class="ph-fill ph-arrow-clockwise text-orange-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-bold text-gray-800">Yenilə</div>
+                        <div class="text-xs text-gray-500">Səhifəni yenidən yüklə</div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">F5</span>
+                </button>
+            </div>
+            
+            <div class="h-px bg-gray-200 my-2"></div>
+            
+            <!-- Info Section -->
+            <div class="px-3 py-2 bg-gray-50 rounded-lg">
+                <div class="flex items-center gap-2 text-xs text-gray-600">
+                    <i class="ph-duotone ph-info text-sm"></i>
+                    <span class="font-medium">Klaviatura: ← → (Naviqasiya)</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(menu);
+    return menu;
+}
+
+// Show Context Menu
+function showContextMenu(x, y) {
+    if (!contextMenu) {
+        contextMenu = createContextMenu();
+        addContextMenuListeners();
+    }
+
+    // Update current slide info
+    const currentSlideEl = contextMenu.querySelector('#context-current-slide');
+    if (currentSlideEl) {
+        currentSlideEl.textContent = currentSlide;
+    }
+
+    // Position menu
+    contextMenu.style.display = 'block';
+    contextMenu.style.left = x + 'px';
+    contextMenu.style.top = y + 'px';
+
+    // Check if menu goes off screen
+    const menuRect = contextMenu.getBoundingClientRect();
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    if (menuRect.right > windowWidth) {
+        contextMenu.style.left = (windowWidth - menuRect.width - 10) + 'px';
+    }
+    if (menuRect.bottom > windowHeight) {
+        contextMenu.style.top = (windowHeight - menuRect.height - 10) + 'px';
+    }
+
+    // Animate in
+    gsap.fromTo(contextMenu,
+        { scale: 0.9, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.2, ease: 'back.out(1.7)' }
+    );
+}
+
+// Hide Context Menu
+function hideContextMenu() {
+    if (!contextMenu) return;
+
+    gsap.to(contextMenu, {
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.15,
+        ease: 'power2.in',
+        onComplete: () => {
+            contextMenu.style.display = 'none';
+        }
+    });
+}
+
+// Add Context Menu Event Listeners
+function addContextMenuListeners() {
+    if (!contextMenu) return;
+
+    const items = contextMenu.querySelectorAll('.context-menu-item');
+
+    items.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const action = item.getAttribute('data-action');
+
+            switch (action) {
+                case 'first':
+                    currentSlide = 0;
+                    showSlide(0, -1);
+                    break;
+                case 'last':
+                    currentSlide = totalSlides - 1;
+                    showSlide(totalSlides - 1, 1);
+                    break;
+                case 'debug':
+                    toggleDebugMode();
+                    break;
+                case 'fullscreen':
+                    if (!document.fullscreenElement) {
+                        document.documentElement.requestFullscreen();
+                    } else {
+                        document.exitFullscreen();
+                    }
+                    break;
+                case 'reload':
+                    location.reload();
+                    break;
+            }
+
+            hideContextMenu();
+        });
+    });
+}
+
+// Prevent Default Context Menu & Show Custom Menu
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    showContextMenu(e.clientX, e.clientY);
+});
+
+// Hide menu on click outside
+document.addEventListener('click', (e) => {
+    if (contextMenu && !contextMenu.contains(e.target)) {
+        hideContextMenu();
+    }
+});
+
+// Hide menu on scroll
+document.addEventListener('scroll', () => {
+    hideContextMenu();
+});
+
+// Hide menu on escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        hideContextMenu();
+    }
+});

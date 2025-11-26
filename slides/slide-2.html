@@ -1,4 +1,5 @@
-<div class="slide" id="slide-2">
+<div class="slide" id="slide-2"
+    onclick="const hiddenCard = this.querySelector('.goal-card-premium.opacity-0'); if(hiddenCard) { hiddenCard.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none'); hiddenCard.classList.add('opacity-100', 'translate-y-0'); }">
     <div class="glass-card full-width flex-col justify-center" style="padding: 2rem 4rem; gap: 1rem;">
         <div
             class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl -z-10 animate-pulse">
@@ -14,21 +15,27 @@
             </h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch h-full max-h-[65%] z-20 px-4">
-            <div class="goal-card-premium color-blue animate-stagger">
+            <!-- Card 1: Maarifləndirmə -->
+            <div
+                class="goal-card-premium color-blue opacity-0 translate-y-8 pointer-events-none transition-all duration-500 ease-out">
                 <div class="goal-number">01</div>
                 <div class="goal-icon-box"><i class="ph-duotone ph-lightbulb"></i></div>
                 <h3 class="text-2xl font-black text-gray-800 mb-3 tracking-tight">MAARİFLƏNDİRMƏ</h3>
                 <p class="text-gray-500 text-sm leading-relaxed font-medium">Cəmiyyətdə hüquqi bilikləri artırmaq,
                     stereotipləri qırmaq və informasiya əlçatanlığını təmin etmək.</p>
             </div>
-            <div class="goal-card-premium color-orange animate-stagger" style="transform: translateY(-20px);">
+            <!-- Card 2: Əməkdaşlıq -->
+            <div class="goal-card-premium color-orange opacity-0 translate-y-8 pointer-events-none transition-all duration-500 ease-out"
+                style="transition-delay: 100ms;">
                 <div class="goal-number">02</div>
                 <div class="goal-icon-box"><i class="ph-duotone ph-handshake"></i></div>
                 <h3 class="text-2xl font-black text-gray-800 mb-3 tracking-tight">ƏMƏKDAŞLIQ</h3>
                 <p class="text-gray-500 text-sm leading-relaxed font-medium">Dövlət qurumları və vətəndaş cəmiyyəti
                     arasında qarşılıqlı əlaqələri və etimadı inkişaf etdirmək.</p>
             </div>
-            <div class="goal-card-premium color-green animate-stagger">
+            <!-- Card 3: Koordinasiya -->
+            <div class="goal-card-premium color-green opacity-0 translate-y-8 pointer-events-none transition-all duration-500 ease-out"
+                style="transition-delay: 200ms;">
                 <div class="goal-number">03</div>
                 <div class="goal-icon-box"><i class="ph-duotone ph-arrows-merge"></i></div>
                 <h3 class="text-2xl font-black text-gray-800 mb-3 tracking-tight">KOORDİNASİYA</h3>
