@@ -1,6 +1,6 @@
 async function loadSlides() {
     const app = document.getElementById('app');
-    const totalSlides = 29;
+    const totalSlides = 30;
 
     // 1. Load the first slide immediately
     try {
