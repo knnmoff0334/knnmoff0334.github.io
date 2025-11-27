@@ -1,153 +1,194 @@
-<div class="slide" id="slide-24">
-    <div class="glass-card main-content full-width flex-layout overflow-hidden">
+<div class="slide" id="slide-25" onclick="revealNextSwotCard(this)">
+    <!-- Dark Premium Background with Warm Theme Integration -->
+    <div
+        class="glass-card main-content full-width flex-col overflow-hidden relative justify-center bg-slate-950/90 backdrop-blur-sm">
 
-        <!-- Background Ambience -->
-        <div
-            class="absolute top-0 left-0 w-[800px] h-[800px] bg-teal-500/10 rounded-full blur-[120px] -z-10 animate-pulse">
+        <!-- Animated Background Mesh & Warm Ambience -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(249,115,22,0.05),transparent_60%)]">
         </div>
-        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[100px] -z-10 animate-pulse"
+        <div
+            class="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay">
+        </div>
+
+        <!-- Warm Glowing Orbs (Matching the Orange Background) -->
+        <div
+            class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-orange-600/20 rounded-full blur-[120px] animate-pulse">
+        </div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-amber-600/20 rounded-full blur-[120px] animate-pulse"
             style="animation-delay: 2s;"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/5 rounded-full blur-[100px]">
+        </div>
 
-        <!-- Main Container -->
-        <div class="w-full h-full flex flex-col p-6">
+        <!-- Header -->
+        <div class="absolute top-6 left-0 w-full flex flex-col items-center z-30 pointer-events-none">
+            <div class="flex items-center gap-3 mb-2 animate-text">
+                <span
+                    class="px-3 py-1 rounded-full border border-orange-500/20 bg-orange-500/10 text-orange-200/80 text-xs font-bold uppercase tracking-[0.2em] backdrop-blur-md shadow-[0_0_15px_rgba(249,115,22,0.3)]">Strateji
+                    Sessiyası</span>
+            </div>
+            <h2
+                class="text-5xl lg:text-6xl font-black title-font animate-text text-center text-white drop-shadow-2xl tracking-tight">
+                SWOT <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-200 to-orange-400">Analizi</span>
+            </h2>
 
-            <!-- Header Section -->
-            <div class="flex flex-col items-center text-center mb-8 shrink-0 z-10">
+        </div>
+
+        <!-- Central Core -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+            <div class="relative flex items-center justify-center">
+                <!-- Pulse Rings -->
                 <div
-                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 w-fit mb-3 animate-text">
-                    <div class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></div>
-                    <span class="text-[10px] font-black tracking-[0.2em] uppercase">Strateji Təhlil</span>
+                    class="absolute w-[550px] h-[550px] border border-orange-500/10 rounded-full animate-[spin_60s_linear_infinite]">
                 </div>
-                <h2 class="text-4xl lg:text-5xl font-black text-gray-900 leading-tight animate-text mb-4">
-                    SWOT <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Analizi</span>
-                </h2>
-                <p class="text-sm text-gray-600 max-w-3xl animate-text leading-relaxed">
-                    Hər hansı bir layihəni, təşkilatı və ya vəziyyəti qiymətləndirmək üçün istifadə olunan sadə, amma
-                    çox effektiv strateji təhlil metodudur.
-                </p>
+                <div
+                    class="absolute w-[350px] h-[350px] border border-orange-500/20 rounded-full animate-[spin_40s_linear_infinite_reverse]">
+                </div>
+
+                <!-- Center Badge -->
+                <div
+                    class="relative w-20 h-20 bg-slate-900 rounded-2xl border border-orange-500/30 shadow-[0_0_50px_-10px_rgba(249,115,22,0.5)] flex items-center justify-center rotate-45 z-20">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-2xl animate-pulse">
+                    </div>
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-orange-600 to-red-600 rounded-xl flex items-center justify-center -rotate-45 shadow-inner border border-white/20">
+                        <span class="text-white font-black text-lg tracking-tighter">SWOT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2x2 Matrix Grid -->
+        <div class="grid grid-cols-2 grid-rows-2 gap-10 w-full max-w-[85%] mx-auto h-[72%] mt-16 z-10">
+
+            <!-- S - Strengths (Blue -> Cyan) -->
+            <div
+                class="swot-card mt-16 opacity-0 scale-90 pointer-events-none transition-all duration-500 flex flex-col justify-between p-8 rounded-[2.5rem] bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-slate-800/80 hover:border-blue-400/50 hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.4)] group relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400"></div>
+                <div
+                    class="absolute -right-10 -top-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors">
+                </div>
+
+                <div class="flex justify-between items-start">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xl group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                        <i class="ph-fill ph-trophy"></i>
+                    </div>
+                    <span class="text-7xl font-black text-white/5 select-none font-sans absolute right-6 top-6">S</span>
+                </div>
+
+                <div class="relative z-10">
+                    <h3
+                        class="text-2xl lg:text-3xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">
+                        Güclü Tərəflər</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Rəqabət üstünlüyü yaradan daxili resurslar.
+                    </p>
+
+                    <div class="flex gap-2 flex-wrap">
+                        <span
+                            class="px-3 py-1 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-bold">Təcrübə</span>
+                        <span
+                            class="px-3 py-1 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-bold">Keyfiyyət</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- SWOT Matrix Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full min-h-0 flex-1">
-
-                <!-- Strengths (S) -->
+            <!-- W - Weaknesses (Orange -> Amber) -->
+            <div
+                class="swot-card opacity-0 mt-16 scale-90 pointer-events-none transition-all duration-500 flex flex-col justify-between p-8 rounded-[2.5rem] bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-slate-800/80 hover:border-orange-400/50 hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)] group relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-amber-400"></div>
                 <div
-                    class="group relative bg-white/60 backdrop-blur-md border border-teal-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-teal-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                S
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Strengths</h3>
-                                <p class="text-xs font-bold text-teal-600 uppercase tracking-wider">Güclü Tərəflər</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            Sizi və ya qurumu üstün edən, rəqabət avantajı yaradan cəhətlər.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-teal-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-check-circle text-teal-500"></i>
-                                <span>Məs.: Təcrübəli komanda, yüksək keyfiyyətli məhsul.</span>
-                            </div>
-                        </div>
-                    </div>
+                    class="absolute -left-10 -top-10 w-40 h-40 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-colors">
                 </div>
 
-                <!-- Weaknesses (W) -->
-                <div class="group relative bg-white/60 backdrop-blur-md border border-orange-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-orange-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger"
-                    style="animation-delay: 100ms;">
+                <div class="flex justify-between items-start flex-row-reverse">
                     <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
+                        class="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 text-xl group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+                        <i class="ph-fill ph-warning-circle"></i>
                     </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                W
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Weaknesses</h3>
-                                <p class="text-xs font-bold text-orange-600 uppercase tracking-wider">Zəif Tərəflər</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            İnkişaf etdirilməli və ya çatışmazlıq yaradan sahələr.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-orange-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-warning-circle text-orange-500"></i>
-                                <span>Məs.: Məhdud büdcə, az tanınma.</span>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="text-7xl font-black text-white/5 select-none font-sans absolute left-6 top-6">W</span>
                 </div>
 
-                <!-- Opportunities (O) -->
-                <div class="group relative bg-white/60 backdrop-blur-md border border-blue-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger"
-                    style="animation-delay: 200ms;">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                O
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Opportunities</h3>
-                                <p class="text-xs font-bold text-blue-600 uppercase tracking-wider">İmkanlar</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            Xarici mühitdə mövcud olan, istifadə edilsə, inkişaf gətirəcək fürsətlər.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-blue-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-trend-up text-blue-500"></i>
-                                <span>Məs.: Artan bazar tələbi, yeni texnologiyalar.</span>
-                            </div>
-                        </div>
+                <div class="relative z-10 text-right">
+                    <h3
+                        class="text-2xl lg:text-3xl font-black text-white mb-2 group-hover:text-orange-400 transition-colors">
+                        Zəif Tərəflər</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">İnkişaf etdirilməli olan daxili
+                        çatışmazlıqlar.</p>
+
+                    <div class="flex gap-2 justify-end flex-wrap">
+                        <span
+                            class="px-3 py-1 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-300 text-xs font-bold">Resurslar</span>
+                        <span
+                            class="px-3 py-1 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-300 text-xs font-bold">Tanınma</span>
                     </div>
                 </div>
-
-                <!-- Threats (T) -->
-                <div class="group relative bg-white/60 backdrop-blur-md border border-purple-100 rounded-3xl p-6 hover:shadow-xl hover:shadow-purple-100/50 transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-stagger"
-                    style="animation-delay: 300ms;">
-                    <div
-                        class="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110">
-                    </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div
-                                class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl font-black shadow-sm group-hover:scale-110 transition-transform">
-                                T
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-900">Threats</h3>
-                                <p class="text-xs font-bold text-purple-600 uppercase tracking-wider">Təhdidlər</p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4 flex-1">
-                            Fəaliyyətə mənfi təsir göstərə biləcək risklər və xarici maneələr.
-                        </p>
-                        <div class="mt-auto pt-4 border-t border-purple-100">
-                            <div class="flex items-center gap-2 text-xs font-medium text-gray-500">
-                                <i class="ph-fill ph-shield-warning text-purple-500"></i>
-                                <span>Məs.: Güclü rəqiblər, iqtisadi böhranlar.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+
+            <!-- O - Opportunities (Green -> Emerald) -->
+            <div
+                class="swot-card opacity-0 mt-16 scale-90 pointer-events-none transition-all duration-500 flex flex-col justify-between p-8 rounded-[2.5rem] bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-slate-800/80 hover:border-emerald-400/50 hover:shadow-[0_0_40px_-10px_rgba(16,185,129,0.4)] group relative overflow-hidden">
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-green-400"></div>
+                <div
+                    class="absolute -right-10 -bottom-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-colors">
+                </div>
+
+                <div class="relative z-10">
+                    <div class="flex gap-2 mb-4 flex-wrap">
+                        <span
+                            class="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold">Texnologiya</span>
+                        <span
+                            class="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold">Bazar</span>
+                    </div>
+                    <h3
+                        class="text-2xl lg:text-3xl font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                        İmkanlar</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Xarici mühitdə mövcud olan inkişaf fürsətləri.</p>
+                </div>
+
+                <div class="flex justify-between items-end mt-2">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                        <i class="ph-fill ph-trend-up"></i>
+                    </div>
+                    <span
+                        class="text-7xl font-black text-white/5 select-none font-sans absolute right-6 bottom-6">O</span>
+                </div>
+            </div>
+
+            <!-- T - Threats (Red -> Rose) -->
+            <div
+                class="swot-card mt-16 opacity-0 scale-90 pointer-events-none transition-all duration-500 flex flex-col justify-between p-8 rounded-[2.5rem] bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-slate-800/80 hover:border-rose-400/50 hover:shadow-[0_0_40px_-10px_rgba(244,63,94,0.4)] group relative overflow-hidden">
+                <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-rose-500 to-red-400"></div>
+                <div
+                    class="absolute -left-10 -bottom-10 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl group-hover:bg-rose-500/20 transition-colors">
+                </div>
+
+                <div class="relative z-10 text-right">
+                    <div class="flex gap-2 justify-end mb-4 flex-wrap">
+                        <span
+                            class="px-3 py-1 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-bold">Rəqiblər</span>
+                        <span
+                            class="px-3 py-1 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-bold">Böhran</span>
+                    </div>
+                    <h3
+                        class="text-2xl lg:text-3xl font-black text-white mb-2 group-hover:text-rose-400 transition-colors">
+                        Təhdidlər</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Fəaliyyətə mənfi təsir edə biləcək risklər.</p>
+                </div>
+
+                <div class="flex justify-between items-end mt-2 flex-row-reverse">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 text-xl group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(244,63,94,0.2)]">
+                        <i class="ph-fill ph-shield-warning"></i>
+                    </div>
+                    <span
+                        class="text-7xl font-black text-white/5 select-none font-sans absolute left-6 bottom-6">T</span>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

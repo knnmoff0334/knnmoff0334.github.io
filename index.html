@@ -15,6 +15,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css?v=1.0">
+    <link rel="stylesheet" href="css/lightbox.css">
 </head>
 
 <body class="js-loading">
@@ -40,10 +41,34 @@
         <!-- Slides will be loaded here dynamically -->
     </div>
 
+    <!-- Lightbox Modal for Image Gallery -->
+    <div id="lightbox-modal" class="lightbox-modal">
+        <div class="lightbox-overlay" onclick="closeLightbox()"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">
+                <i class="ph-bold ph-x"></i>
+            </button>
+            <button class="lightbox-prev" onclick="navigateLightbox(-1)">
+                <i class="ph-bold ph-caret-left"></i>
+            </button>
+            <button class="lightbox-next" onclick="navigateLightbox(1)">
+                <i class="ph-bold ph-caret-right"></i>
+            </button>
+            <div class="lightbox-image-container">
+                <img id="lightbox-image" src="" alt="Lightbox Image">
+            </div>
+            <div class="lightbox-counter">
+                <span id="lightbox-current">1</span> / <span id="lightbox-total">1</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Logic -->
     <script src="js/script.js?v=1.0"></script>
     <!-- Slide Loader -->
     <script src="js/loader.js?v=1.0"></script>
+    <!-- Lightbox Gallery -->
+    <script src="js/lightbox.js"></script>
 </body>
 
 </html>

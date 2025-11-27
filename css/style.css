@@ -111,11 +111,15 @@ h3,
 
 /* Main Layout */
 #app {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    width: 1920px;
+    /* Reference width */
+    height: 1080px;
+    /* Reference height */
     perspective: 1000px;
     overflow: hidden;
+    top: 0;
+    left: 0;
 }
 
 .slide {
@@ -153,6 +157,7 @@ h3,
     padding: 3rem;
     position: relative;
 }
+
 /* Flex layout variant for slides that need flex instead of grid */
 .main-content.flex-layout {
     display: flex;

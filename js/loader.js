@@ -85,6 +85,13 @@ async function loadSlides() {
             console.warn(`Failed to background load slide ${i}`, error);
         }
     }
+
+    // Initialize lightbox after all slides are loaded
+    if (typeof initializeLightbox === 'function') {
+        setTimeout(() => {
+            initializeLightbox();
+        }, 1000); // Wait for slides to be fully rendered
+    }
 }
 
 // Start loading when DOM is ready

@@ -6,6 +6,46 @@ let isAnimating = false;
 // Initialize GSAP
 gsap.registerPlugin();
 
+// ============================================
+// VIEWPORT SCALING - Responsive Design
+// ============================================
+
+// Reference resolution (design resolution)
+const REFERENCE_WIDTH = 1920;
+const REFERENCE_HEIGHT = 1080;
+
+// Update scale based on viewport size
+function updateScale() {
+    const app = document.getElementById('app');
+    if (!app) return;
+
+    const scaleX = window.innerWidth / REFERENCE_WIDTH;
+    const scaleY = window.innerHeight / REFERENCE_HEIGHT;
+
+    // Use the smaller scale to ensure everything fits
+    const scale = Math.min(scaleX, scaleY);
+
+    // Apply transform scaling
+    app.style.transform = `scale(${scale})`;
+    app.style.transformOrigin = 'top left';
+
+    // Center the scaled content
+    const scaledWidth = REFERENCE_WIDTH * scale;
+    const scaledHeight = REFERENCE_HEIGHT * scale;
+    const offsetX = (window.innerWidth - scaledWidth) / 2;
+    const offsetY = (window.innerHeight - scaledHeight) / 2;
+
+    app.style.left = `${offsetX}px`;
+    app.style.top = `${offsetY}px`;
+}
+
+// Initialize scaling on load
+updateScale();
+
+// Update scaling on window resize
+window.addEventListener('resize', updateScale);
+
+
 // Update navigation button visibility based on current slide
 function updateNavigationButtons() {
     const prevBtn = document.getElementById('prevBtn');
@@ -80,6 +120,51 @@ function prepareSlideElements(slideContext) {
     // Counters
     const counters = slideContext.querySelectorAll('.count-up');
     counters.forEach(counter => counter.innerHTML = "0");
+
+    // Slide-2 specific: Reset goal cards to initial hidden state
+    if (slideContext.id === 'slide-2') {
+        const goalCards = slideContext.querySelectorAll('.goal-card-premium');
+        goalCards.forEach(card => {
+            card.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+            card.classList.remove('opacity-100', 'translate-y-0');
+        });
+    }
+
+    // Slide-25 specific: Reset SWOT cards to initial hidden state
+    if (slideContext.id === 'slide-25') {
+        const swotCards = slideContext.querySelectorAll('.swot-card');
+        swotCards.forEach(card => {
+            gsap.set(card, { opacity: 0, scale: 0.9, pointerEvents: 'none' });
+            card.classList.add('opacity-0', 'scale-95', 'pointer-events-none'); // Fallback classes
+            card.classList.remove('opacity-100', 'scale-100');
+        });
+    }
+}
+
+// ... (existing code) ...
+
+// Helper: Reveal next SWOT card on Slide 25
+function revealNextSwotCard(slideElement) {
+    // Find all hidden SWOT cards
+    const hiddenCards = slideElement.querySelectorAll('.swot-card.opacity-0');
+
+    if (hiddenCards.length > 0) {
+        const nextCard = hiddenCards[0];
+
+        // Remove fallback classes
+        nextCard.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+
+        // GSAP Elastic Animation
+        gsap.to(nextCard, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "elastic.out(1, 0.6)",
+            pointerEvents: 'auto'
+        });
+
+        // Optional: Add a subtle sound effect or haptic feedback here if desired
+    }
 }
 
 // Slide Transitions
@@ -348,77 +433,21 @@ document.addEventListener('keydown', (e) => {
     // F key: Fullscreen toggle
     if (e.key === 'f' || e.key === 'F') {
         e.preventDefault();
-        if (!document.fullscreenElement) {
+
+        // If the video is already the fullscreen element, exit fullscreen
+        if (document.fullscreenElement === video) {
+            document.exitFullscreen();
+        }
+        // Otherwise (if nothing is fullscreen, OR the slide deck is fullscreen), make video fullscreen
+        else {
             video.requestFullscreen().catch(err => {
                 console.log('Fullscreen error:', err);
             });
-        } else {
-            document.exitFullscreen();
         }
     }
 });
 
-// Slide 5 Interaction Logic (Event Delegation)
-document.addEventListener('click', (e) => {
-    const card = e.target.closest('#risk-group-card');
-    if (!card) return;
 
-    // Prevent multiple triggers if already updated
-    if (card.dataset.updated === 'true') return;
-    card.dataset.updated = 'true';
-
-    const numberEl = card.querySelector('.number-target');
-    const iconEl = card.querySelector('.icon-target');
-    const textEl = card.querySelector('.text-target');
-
-    // Animate number
-    let proxy = { val: 6083 };
-    gsap.to(proxy, {
-        val: 5798,
-        duration: 2,
-        ease: 'power2.out',
-        onUpdate: function () {
-            if (numberEl) numberEl.innerHTML = Math.round(proxy.val);
-        }
-    });
-
-    // Visual updates for 'Success' state
-    if (iconEl) {
-        gsap.to(iconEl, {
-            color: '#10B981', // green-500
-            duration: 0.5,
-            onStart: () => {
-                iconEl.classList.replace('ph-warning-octagon', 'ph-check-circle');
-            }
-        });
-    }
-
-    if (numberEl) {
-        gsap.to(numberEl, {
-            color: '#059669', // green-600
-            duration: 0.5
-        });
-    }
-
-    if (textEl) {
-        gsap.to(textEl, {
-            opacity: 0,
-            duration: 0.3,
-            onComplete: () => {
-                textEl.innerHTML = 'Nəticə (Ugurlu)';
-                textEl.classList.add('text-green-600');
-                gsap.to(textEl, { opacity: 1, duration: 0.3 });
-            }
-        });
-    }
-
-    gsap.to(card, {
-        boxShadow: '0 10px 25px -5px rgba(16, 185, 129, 0.1), 0 8px 10px -6px rgba(16, 185, 129, 0.1)',
-        borderColor: '#10B981',
-        backgroundColor: '#ECFDF5', // green-50
-        duration: 0.5
-    });
-});
 
 // ============================================
 // DEBUG MODE - Ctrl+Shift+Y
@@ -431,11 +460,12 @@ let debugPanel = null;
 function createDebugPanel() {
     const panel = document.createElement('div');
     panel.id = 'debug-panel';
-    panel.className = 'fixed top-4 right-4 w-80 bg-gray-900/95 backdrop-blur-md text-white rounded-2xl shadow-2xl border border-gray-700 z-[9999] overflow-hidden';
+    // Added resize and min-height/width constraints
+    panel.className = 'fixed top-4 right-4 w-80 min-w-[320px] min-h-[400px] max-h-[90vh] bg-gray-900/95 backdrop-blur-md text-white rounded-2xl shadow-2xl border border-gray-700 z-[9999] overflow-hidden flex flex-col resize';
     panel.style.display = 'none';
 
     panel.innerHTML = `
-        <div class="p-4 bg-gradient-to-r from-indigo-600 to-purple-600 border-b border-gray-700">
+        <div id="debug-header" class="p-4 bg-gradient-to-r from-indigo-600 to-purple-600 border-b border-gray-700 cursor-move select-none shrink-0">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
@@ -445,7 +475,7 @@ function createDebugPanel() {
             </div>
         </div>
         
-        <div class="p-4 space-y-4">
+        <div class="p-4 space-y-4 overflow-y-auto flex-1 custom-scrollbar">
             <!-- Current Slide Info -->
             <div class="bg-gray-800 rounded-lg p-3 border border-gray-700">
                 <div class="text-xs text-gray-400 mb-1">Current Slide</div>
@@ -495,6 +525,53 @@ function createDebugPanel() {
     `;
 
     document.body.appendChild(panel);
+
+    // Drag Logic
+    const header = panel.querySelector('#debug-header');
+    let isDragging = false;
+    let currentX;
+    let currentY;
+    let initialX;
+    let initialY;
+    let xOffset = 0;
+    let yOffset = 0;
+
+    header.addEventListener("mousedown", dragStart);
+    document.addEventListener("mouseup", dragEnd);
+    document.addEventListener("mousemove", drag);
+
+    function dragStart(e) {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+
+        if (e.target.closest('#debug-header')) {
+            isDragging = true;
+        }
+    }
+
+    function dragEnd(e) {
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+
+            xOffset = currentX;
+            yOffset = currentY;
+
+            setTranslate(currentX, currentY, panel);
+        }
+    }
+
+    function setTranslate(xPos, yPos, el) {
+        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+    }
+
     return panel;
 }
 
@@ -584,16 +661,16 @@ function toggleDebugMode() {
     }
 
     if (debugModeActive) {
-        debugPanel.style.display = 'block';
+        debugPanel.style.display = 'flex'; // Changed to flex for layout
         updateDebugPanel();
         gsap.fromTo(debugPanel,
-            { x: 400, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.3, ease: 'power2.out' }
+            { opacity: 0, scale: 0.9 },
+            { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }
         );
     } else {
         gsap.to(debugPanel, {
-            x: 400,
             opacity: 0,
+            scale: 0.9,
             duration: 0.3,
             ease: 'power2.in',
             onComplete: () => {
@@ -835,12 +912,41 @@ function addContextMenuListeners() {
         });
     });
 }
-
 // Prevent Default Context Menu & Show Custom Menu
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
     showContextMenu(e.clientX, e.clientY);
 });
+
+// Helper: Reveal next SWOT card on Slide 25
+function revealNextSwotCard(slideElement) {
+    console.log('🖱️ Slide 25 clicked!');
+
+    // Find all hidden SWOT cards
+    const hiddenCards = slideElement.querySelectorAll('.swot-card.opacity-0');
+    console.log(`Found ${hiddenCards.length} hidden cards`);
+
+    if (hiddenCards.length > 0) {
+        const nextCard = hiddenCards[0];
+        console.log('Revealing next card:', nextCard);
+
+        // Remove fallback classes
+        nextCard.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+
+        // GSAP Elastic Animation
+        gsap.to(nextCard, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "elastic.out(1, 0.6)",
+            pointerEvents: 'auto'
+        });
+
+        // Optional: Add a subtle sound effect or haptic feedback here if desired
+    } else {
+        console.log('No more cards to reveal');
+    }
+}
 
 // Hide menu on click outside
 document.addEventListener('click', (e) => {
@@ -860,3 +966,5 @@ document.addEventListener('keydown', (e) => {
         hideContextMenu();
     }
 });
+
+
