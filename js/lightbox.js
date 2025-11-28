@@ -143,10 +143,13 @@ document.addEventListener('keydown', (e) => {
     if (!modal.classList.contains('active')) return;
 
     if (e.key === 'Escape') {
+        e.preventDefault();
         closeLightbox();
     } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
         navigateLightbox(-1);
     } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
         navigateLightbox(1);
     }
 });
