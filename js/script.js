@@ -135,37 +135,12 @@ function prepareSlideElements(slideContext) {
         const swotCards = slideContext.querySelectorAll('.swot-card');
         swotCards.forEach(card => {
             gsap.set(card, { opacity: 0, scale: 0.9, pointerEvents: 'none' });
-            card.classList.add('opacity-0', 'scale-95', 'pointer-events-none'); // Fallback classes
+            card.classList.add('opacity-0', 'scale-90', 'pointer-events-none'); // Fallback classes (scale-90 matches HTML)
             card.classList.remove('opacity-100', 'scale-100');
         });
     }
 }
 
-// ... (existing code) ...
-
-// Helper: Reveal next SWOT card on Slide 25
-function revealNextSwotCard(slideElement) {
-    // Find all hidden SWOT cards
-    const hiddenCards = slideElement.querySelectorAll('.swot-card.opacity-0');
-
-    if (hiddenCards.length > 0) {
-        const nextCard = hiddenCards[0];
-
-        // Remove fallback classes
-        nextCard.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
-
-        // GSAP Elastic Animation
-        gsap.to(nextCard, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "elastic.out(1, 0.6)",
-            pointerEvents: 'auto'
-        });
-
-        // Optional: Add a subtle sound effect or haptic feedback here if desired
-    }
-}
 
 // Slide Transitions
 function showSlide(index, direction = 1) {
@@ -614,8 +589,9 @@ function generateSlideGrid() {
         btn.className = 'debug-slide-btn px-2 py-1.5 bg-gray-700 hover:bg-gray-600 rounded text-xs font-bold transition-colors';
         btn.textContent = i;
         btn.addEventListener('click', () => {
+            const direction = i > currentSlide ? 1 : -1;
             currentSlide = i;
-            showSlide(i, i > currentSlide ? 1 : -1);
+            showSlide(i, direction);
             updateDebugPanel();
         });
         grid.appendChild(btn);
@@ -640,8 +616,9 @@ function toggleDebugMode() {
         jumpBtn.addEventListener('click', () => {
             const targetSlide = parseInt(slideInput.value);
             if (targetSlide >= 0 && targetSlide < totalSlides) {
+                const direction = targetSlide > currentSlide ? 1 : -1;
                 currentSlide = targetSlide;
-                showSlide(targetSlide, targetSlide > currentSlide ? 1 : -1);
+                showSlide(targetSlide, direction);
                 updateDebugPanel();
                 slideInput.value = '';
             }

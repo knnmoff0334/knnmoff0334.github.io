@@ -76,11 +76,8 @@ function navigateLightbox(direction) {
 
 // Initialize lightbox for all slides with images
 function initializeLightbox() {
-    console.log('🖼️ Initializing lightbox...');
-
     // Find all slides with image grids
     const slides = document.querySelectorAll('.slide');
-    console.log(`Found ${slides.length} slides`);
 
     slides.forEach((slide, slideIndex) => {
         // Find all images in the slide
@@ -93,11 +90,8 @@ function initializeLightbox() {
             return img.src.includes('/images/');
         });
 
-        console.log(`Slide ${slideIndex} (${slide.id}): Found ${allImages.length} total images, ${images.length} valid images`);
-
         if (images.length >= 2) { // At least 2 images for gallery
             const imageArray = images.map(img => img.src);
-            console.log(`✅ Slide ${slide.id}: Lightbox enabled for ${images.length} images`);
 
             images.forEach((img, index) => {
                 // Skip if already has click handler
@@ -115,7 +109,6 @@ function initializeLightbox() {
                         parent.style.cursor = 'pointer';
                         parent.addEventListener('click', (e) => {
                             e.stopPropagation();
-                            console.log(`🖱️ Clicked image ${index + 1}/${images.length}`);
                             openLightbox(img.src, index, imageArray);
                         });
                     }
@@ -124,17 +117,12 @@ function initializeLightbox() {
                     img.style.cursor = 'pointer';
                     img.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        console.log(`🖱️ Clicked image ${index + 1}/${images.length}`);
                         openLightbox(img.src, index, imageArray);
                     });
                 }
             });
-        } else {
-            console.log(`❌ Slide ${slide.id}: Not enough images (${images.length} < 2)`);
         }
     });
-
-    console.log('✅ Lightbox initialization complete');
 }
 
 // Keyboard controls for lightbox
