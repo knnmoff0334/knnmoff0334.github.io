@@ -2,6 +2,7 @@
 let currentSlide = 0;
 const totalSlides = 30; // Correct: slides 0-29
 let isAnimating = false;
+let largeScreenMode = false;
 
 // Initialize GSAP
 gsap.registerPlugin();
@@ -431,6 +432,59 @@ document.addEventListener('keydown', (e) => {
 
 
 // ============================================
+// LARGE SCREEN MODE - Ctrl+Shift+L
+// Büyük ekran sunumları için font ölçeklendirme
+// ============================================
+
+function toggleLargeScreenMode() {
+    largeScreenMode = !largeScreenMode;
+    document.body.classList.toggle('large-screen-mode', largeScreenMode);
+    
+    // Update debug panel checkbox if exists
+    const checkbox = document.getElementById('debug-large-screen-checkbox');
+    if (checkbox) {
+        checkbox.checked = largeScreenMode;
+    }
+    
+    // Show notification
+    showModeNotification(largeScreenMode ? 'Büyük Ekran Modu: AÇIK' : 'Büyük Ekran Modu: KAPALI');
+}
+
+function showModeNotification(message) {
+    // Remove existing notification
+    const existing = document.getElementById('mode-notification');
+    if (existing) existing.remove();
+    
+    const notification = document.createElement('div');
+    notification.id = 'mode-notification';
+    notification.className = 'fixed bottom-24 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-xl shadow-2xl z-[10001] font-bold text-lg';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    gsap.fromTo(notification, 
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.3, ease: 'back.out(1.7)' }
+    );
+    
+    setTimeout(() => {
+        gsap.to(notification, {
+            opacity: 0,
+            y: -20,
+            duration: 0.3,
+            onComplete: () => notification.remove()
+        });
+    }, 2000);
+}
+
+// Keyboard Shortcut: Ctrl+Shift+L for Large Screen Mode
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'L') {
+        e.preventDefault();
+        toggleLargeScreenMode();
+    }
+});
+
+// ============================================
 // DEBUG MODE - Ctrl+Shift+Y
 // ============================================
 
@@ -493,6 +547,24 @@ function createDebugPanel() {
                 <button id="debug-last-btn" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-xs font-bold border border-gray-700 transition-colors">
                     Last ⏭
                 </button>
+            </div>
+            
+            <!-- Large Screen Mode Toggle -->
+            <div class="bg-gradient-to-r from-orange-900/50 to-amber-900/50 rounded-lg p-3 border border-orange-700/50">
+                <label class="flex items-center justify-between cursor-pointer group">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">📺</span>
+                        <div>
+                            <div class="text-xs font-bold text-orange-200">Büyük Ekran Modu</div>
+                            <div class="text-xs text-orange-300/60">Ctrl+Shift+L</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <input type="checkbox" id="debug-large-screen-checkbox" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-700 rounded-full peer peer-checked:bg-orange-500 transition-colors"></div>
+                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                    </div>
+                </label>
             </div>
             
             <!-- Slide Grid -->
@@ -641,6 +713,15 @@ function toggleDebugMode() {
             showSlide(totalSlides - 1, 1);
             updateDebugPanel();
         });
+        
+        // Large Screen Mode checkbox
+        const largeScreenCheckbox = document.getElementById('debug-large-screen-checkbox');
+        if (largeScreenCheckbox) {
+            largeScreenCheckbox.checked = largeScreenMode;
+            largeScreenCheckbox.addEventListener('change', () => {
+                toggleLargeScreenMode();
+            });
+        }
     }
 
     if (debugModeActive) {
@@ -786,6 +867,17 @@ function createContextMenu() {
                     </div>
                     <span class="text-xs text-gray-400 font-mono">F5</span>
                 </button>
+                
+                <button class="context-menu-item w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-amber-50 transition-colors text-left group" data-action="largescreen">
+                    <div class="w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center group-hover:bg-amber-200 transition-colors">
+                        <i class="ph-fill ph-monitor text-amber-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-bold text-gray-800">Böyük Ekran</div>
+                        <div class="text-xs text-gray-500" id="context-large-screen-status">Şrift böyütmə</div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">Ctrl+Shift+L</span>
+                </button>
             </div>
             
             <div class="h-px bg-gray-200 my-2"></div>
@@ -815,6 +907,13 @@ function showContextMenu(x, y) {
     const currentSlideEl = contextMenu.querySelector('#context-current-slide');
     if (currentSlideEl) {
         currentSlideEl.textContent = currentSlide;
+    }
+    
+    // Update large screen mode status
+    const largeScreenStatus = contextMenu.querySelector('#context-large-screen-status');
+    if (largeScreenStatus) {
+        largeScreenStatus.textContent = largeScreenMode ? '✓ Aktiv' : 'Şrift böyütmə';
+        largeScreenStatus.className = largeScreenMode ? 'text-xs text-amber-600 font-bold' : 'text-xs text-gray-500';
     }
 
     // Position menu
@@ -888,6 +987,9 @@ function addContextMenuListeners() {
                     break;
                 case 'reload':
                     location.reload();
+                    break;
+                case 'largescreen':
+                    toggleLargeScreenMode();
                     break;
             }
 

@@ -7,6 +7,346 @@
     --glass-border: rgba(255, 255, 255, 0.8);
     --case-accent: #ef4444;
     --case-muted: #94a3b8;
+    
+    /* Large Screen Mode - Font Scale Factor */
+    --font-scale: 1;
+}
+
+/* ============================================ */
+/* LARGE SCREEN MODE - Büyük Ekran Optimizasyonu */
+/* 4m x 6m ekranlar için tipografi ölçeklendirme */
+/* Toggle: Ctrl+Shift+L veya Debug Panel */
+/* ============================================ */
+
+body.large-screen-mode {
+    --font-scale: 1.35; /* 1.4'ten düşürüldü - overflow sorunlarını önlemek için */
+}
+
+/* Scale all Tailwind text classes in large screen mode */
+body.large-screen-mode .text-xs {
+    font-size: calc(0.75rem * var(--font-scale)) !important; /* 12px -> 16.8px */
+    line-height: 1.5 !important;
+}
+
+body.large-screen-mode .text-sm {
+    font-size: calc(0.875rem * var(--font-scale)) !important; /* 14px -> 19.6px */
+    line-height: 1.5 !important;
+}
+
+body.large-screen-mode .text-base {
+    font-size: calc(1rem * var(--font-scale)) !important; /* 16px -> 22.4px */
+}
+
+body.large-screen-mode .text-lg {
+    font-size: calc(1.125rem * var(--font-scale)) !important; /* 18px -> 25.2px */
+}
+
+body.large-screen-mode .text-xl {
+    font-size: calc(1.25rem * var(--font-scale)) !important; /* 20px -> 28px */
+}
+
+body.large-screen-mode .text-2xl {
+    font-size: calc(1.5rem * var(--font-scale)) !important; /* 24px -> 33.6px */
+}
+
+body.large-screen-mode .text-3xl {
+    font-size: calc(1.875rem * var(--font-scale)) !important; /* 30px -> 42px */
+}
+
+body.large-screen-mode .text-4xl {
+    font-size: calc(2.25rem * var(--font-scale)) !important; /* 36px -> 50.4px */
+}
+
+body.large-screen-mode .text-5xl {
+    font-size: calc(3rem * var(--font-scale)) !important; /* 48px -> 67.2px */
+}
+
+body.large-screen-mode .text-6xl {
+    font-size: calc(3.75rem * var(--font-scale)) !important; /* 60px -> 84px */
+}
+
+body.large-screen-mode .text-7xl {
+    font-size: calc(4.5rem * var(--font-scale)) !important; /* 72px -> 100.8px */
+}
+
+/* ============================================ */
+/* STAT CARDS - Rakam ve Yazı Düzeni */
+/* ============================================ */
+
+/* Stat box düzeni - rakamlar için daha fazla alan */
+body.large-screen-mode .stat-box {
+    padding: 2rem 1.5rem !important;
+    min-height: auto !important;
+}
+
+body.large-screen-mode .stat-box h3,
+body.large-screen-mode .stat-box .count-up {
+    font-size: 3rem !important; /* Sabit boyut - çok büyümesini engelle */
+    line-height: 1.1 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+body.large-screen-mode .stat-box p {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+    margin-top: 0.25rem !important;
+}
+
+/* Stat card ultra düzeni */
+body.large-screen-mode .stat-card-ultra {
+    padding: 2rem !important;
+}
+
+body.large-screen-mode .stat-card-ultra h3,
+body.large-screen-mode .stat-card-ultra .count-up {
+    font-size: 3.5rem !important; /* Kontrollü büyüme */
+    line-height: 1.1 !important;
+}
+
+body.large-screen-mode .k-suffix {
+    font-size: 2rem !important;
+}
+
+/* Genel count-up rakamları - container içinde olanlar */
+body.large-screen-mode .count-up {
+    line-height: 1.1 !important;
+}
+
+/* Büyük rakamların yanındaki açıklamalar */
+body.large-screen-mode [class*="text-"][class*="font-black"] + p,
+body.large-screen-mode .count-up + p,
+body.large-screen-mode h3 + p {
+    margin-top: 0.5rem !important;
+}
+
+/* ============================================ */
+/* CARD İÇİ LAYOUT DÜZELTMELERİ */
+/* ============================================ */
+
+/* Stat kartlarında flex düzeni */
+body.large-screen-mode .stat-box.flex,
+body.large-screen-mode .stat-card-ultra.flex {
+    gap: 1rem !important;
+}
+
+/* Grid gap artırma - sadece stat grid'leri için */
+body.large-screen-mode .grid.gap-4:not(.main-content *):not(#slide-0 *) {
+    gap: 1.25rem !important;
+}
+
+body.large-screen-mode .grid.gap-6:not(.main-content *):not(#slide-0 *) {
+    gap: 1.75rem !important;
+}
+
+/* ============================================ */
+/* TAGS VE BADGES */
+/* ============================================ */
+
+body.large-screen-mode .tag,
+body.large-screen-mode [class*="tracking-wider"],
+body.large-screen-mode [class*="tracking-widest"] {
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+}
+
+/* Rounded tag/badge'ler */
+body.large-screen-mode span[class*="rounded"][class*="bg-"] {
+    font-size: 0.9rem !important;
+}
+
+/* ============================================ */
+/* SLIDE-0 KORUMA - Layout bozulmasın */
+/* ============================================ */
+
+body.large-screen-mode #slide-0 .relative.w-160,
+body.large-screen-mode #slide-0 .relative.h-160 {
+    /* Resim container'ı sabit kalsın */
+    width: 40rem !important;
+    height: 40rem !important;
+}
+
+body.large-screen-mode #slide-0 .absolute.-bottom-6.-left-6 {
+    /* 2025 badge pozisyonu korunsun */
+    bottom: -1.5rem !important;
+    left: -1.5rem !important;
+    padding: 1rem !important;
+}
+
+body.large-screen-mode #slide-0 img[class*="rounded-"] {
+    /* Resim boyutu korunsun */
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+/* ============================================ */
+/* SPECIFIC SLIDE FIXES */
+/* ============================================ */
+
+/* Slide 7/8 - Grid stat kartları (küçük kartlar) */
+body.large-screen-mode #slide-7 .count-up,
+body.large-screen-mode #slide-8 .count-up {
+    font-size: 2rem !important;
+}
+
+body.large-screen-mode #slide-7 [class*="p-4"] p,
+body.large-screen-mode #slide-8 [class*="p-4"] p {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+}
+
+/* Slide 9 - Stat box düzeni */
+body.large-screen-mode #slide-9 .stat-box .count-up,
+body.large-screen-mode #slide-9 .stat-box h3 {
+    font-size: 2.5rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+body.large-screen-mode #slide-9 .stat-box p {
+    font-size: 1rem !important;
+}
+
+/* Slide 12 - Nikah kartları */
+body.large-screen-mode #slide-12 .count-up {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+}
+
+body.large-screen-mode #slide-12 [class*="border-l-"] .count-up {
+    font-size: 2.25rem !important;
+}
+
+/* Slide 14 - Psixoloji zorakılıq */
+body.large-screen-mode #slide-14 .count-up {
+    font-size: 2.75rem !important;
+}
+
+body.large-screen-mode #slide-14 [class*="border-l-"] .count-up {
+    font-size: 2.25rem !important;
+}
+
+body.large-screen-mode #slide-14 [class*="bg-gradient-to-br"] .count-up {
+    font-size: 3.5rem !important;
+}
+
+/* Slide 15 - Hüquqi təminat kartları */
+body.large-screen-mode #slide-15 [class*="border-t-"] .count-up,
+body.large-screen-mode #slide-15 [class*="border-t-"] h3 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+}
+
+body.large-screen-mode #slide-15 [class*="border-t-"] p {
+    font-size: 0.9rem !important;
+    margin-top: 0.25rem !important;
+}
+
+/* Slide 28 - Teşekkür kartları */
+body.large-screen-mode #slide-28 p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+}
+
+body.large-screen-mode #slide-28 h3 {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+}
+
+body.large-screen-mode #slide-28 h4 {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+}
+
+body.large-screen-mode #slide-28 [class*="p-4"],
+body.large-screen-mode #slide-28 [class*="p-5"] {
+    padding: 1.25rem !important;
+}
+
+/* Gradient kartlar içindeki büyük rakamlar - genel */
+body.large-screen-mode [class*="from-gray-900"] .count-up,
+body.large-screen-mode [class*="from-purple-600"] .count-up,
+body.large-screen-mode [class*="from-teal-500"] .count-up {
+    font-size: 3rem !important;
+}
+
+/* Alt açıklamalar - uppercase küçük yazılar */
+body.large-screen-mode p[class*="uppercase"][class*="text-xs"],
+body.large-screen-mode span[class*="uppercase"][class*="text-xs"] {
+    font-size: 0.9rem !important;
+    margin-top: 0.35rem !important;
+}
+
+/* ============================================ */
+/* FLEX LAYOUT DÜZELTMELERİ */
+/* ============================================ */
+
+/* Flex container içinde rakamların taşmasını engelle */
+body.large-screen-mode .flex-col > .count-up,
+body.large-screen-mode .flex-col > h3 {
+    flex-shrink: 0 !important;
+}
+
+/* İkon container'ları sabit boyutta kalsın */
+body.large-screen-mode .stat-box [class*="w-10"][class*="h-10"],
+body.large-screen-mode .stat-box [class*="w-12"][class*="h-12"],
+body.large-screen-mode .stat-box [class*="w-16"][class*="h-16"] {
+    flex-shrink: 0 !important;
+}
+
+/* Chart bar container yüksekliği */
+body.large-screen-mode .chart-bar-bg {
+    margin-top: 0.75rem !important;
+}
+
+/* ============================================ */
+/* STAT CARD PADDING ARTIRMA */
+/* ============================================ */
+
+/* Sadece stat kartları için padding artırma - slide-0 hariç */
+body.large-screen-mode .stat-box[class*="p-"] {
+    padding: 1.5rem !important;
+}
+
+body.large-screen-mode .stat-card-ultra[class*="p-"] {
+    padding: 1.75rem !important;
+}
+
+/* Text alanları için minimum yükseklik - sadece stat kartlarında */
+body.large-screen-mode .stat-box [class*="h-8"],
+body.large-screen-mode [class*="animate-stagger-item"] [class*="h-8"] {
+    height: auto !important;
+    min-height: 2.5rem !important;
+}
+
+/* ============================================ */
+/* NAVIGATION */
+/* ============================================ */
+
+body.large-screen-mode .nav-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+}
+
+/* Status indicator for large screen mode */
+body.large-screen-mode::after {
+    content: '📺 BÜYÜK EKRAN MODU';
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: linear-gradient(135deg, #FF6B00, #FFC107);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+    animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
 }
 
 body {
