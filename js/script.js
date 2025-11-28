@@ -409,9 +409,15 @@ function triggerSlideAnimations(slideContext) {
 
 // Keyboard Nav
 document.addEventListener('keydown', (e) => {
-    // Navigation
-    if (e.key === 'ArrowRight') nextSlide();
-    if (e.key === 'ArrowLeft') prevSlide();
+    // Check if lightbox is open - if so, don't handle slide navigation
+    const lightboxModal = document.getElementById('lightbox-modal');
+    const isLightboxOpen = lightboxModal && lightboxModal.classList.contains('active');
+
+    // Navigation (only if lightbox is NOT open)
+    if (!isLightboxOpen) {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    }
 
     // Video Controls
     const activeSlide = document.querySelector('.active-slide');
